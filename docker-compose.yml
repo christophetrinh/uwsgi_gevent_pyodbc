@@ -1,0 +1,22 @@
+version: '3'
+services:
+  uwsgi_app:
+    build: .
+    environment:
+      - ACCEPT_EULA=Y
+    volumes:
+      - /home/christophe.trinh/Dev/uwsgi_gevent_pyodbc:/app
+    command: bash -c "./app/container-run.sh && bash"
+    depends_on:
+      - mssql
+    tty: true
+    ports:
+      - "127.0.0.1:8082:8082"
+  mssql:
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=MyP@ssw0rd
+    image: "microsoft/mssql-server-linux"
+
+#remote ip:remote port
+
