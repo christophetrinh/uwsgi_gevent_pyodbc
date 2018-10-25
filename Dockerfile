@@ -12,14 +12,13 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y build-essential \
-    && apt-get install apt-utils \
-    && apt-get install dialog
+    && apt-get install -y apt-utils \
+    && apt-get install -y dialog
 
 
 RUN pip install --upgrade pip
 RUN pip install --upgrade wheel
 RUN pip install --upgrade setuptools
-
 
 
 RUN su

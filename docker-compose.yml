@@ -5,7 +5,7 @@ services:
     environment:
       - ACCEPT_EULA=Y
     volumes:
-      - /home/christophe.trinh/Dev/uwsgi_gevent_pyodbc:/app
+      - .:/app
     command: bash -c "./app/container-run.sh && bash"
     depends_on:
       - mssql
