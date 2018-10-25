@@ -8,6 +8,7 @@ def gevent_pyodbc():
         connect_str = 'DRIVER={{ODBC Driver 17 for SQL Server}};' \
             'DATABASE={db};SERVER={dsn};' \
             'UID=sa;PWD=MyP@ssw0rd'.format(dsn='mssql', db='TEST')
+        # WAIT_PROC sql proc to delay for 5s
         with pyodbc.connect(connect_str) as connection:
             with connection.cursor() as cursor:
                 cursor.execute("""
@@ -31,6 +32,7 @@ def gevent_pyodbc_with_sleep():
         connect_str = 'DRIVER={{ODBC Driver 17 for SQL Server}};' \
             'DATABASE={db};SERVER={dsn};' \
             'UID=sa;PWD=MyP@ssw0rd'.format(dsn='mssql', db='TEST')
+        # WAIT_PROC sql proc to delay for 5s
         with pyodbc.connect(connect_str) as connection:
             with connection.cursor() as cursor:
                 cursor.execute("""
@@ -48,6 +50,7 @@ def gevent_pyodbc_with_sleep():
 
 def gevent_pymssql():
     try:
+        # WAIT_PROC sql proc to delay for 5s
         with pymssql.connect(server='mssql', user='sa', password='MyP@ssw0rd', database='TEST') as connection:
             with connection.cursor() as cursor:
                 cursor.execute("""
