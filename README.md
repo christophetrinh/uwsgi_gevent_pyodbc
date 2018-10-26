@@ -1,12 +1,15 @@
 uwsgi_gevent_pyodbc
-=========================
-Repository to prove uWSGI + gevent + pyodbc delay issue.
+===================
+Repository to show the uWSGI + gevent + pyodbc delay issue.
 
-Running flask application with uWSGI using gevent + pyodbc caused a delayed response. However running without uwsgi doesn't caused any delay.
+This test case is made of a Flask application that simply calls asynchronously a SLEEP 5 inside a MSSQL database. We expect the response to be returned directly, without waiting for the MSSQL return.
 
-The process waits for the end of the greenlet task to return response. Use a time.sleep in the asynchronous function can be a workaround to this issue.
+- If we run the application with uWSGI, gevent and pyodbc, we can observe that uWSGI waits for the greenlet before returning
+- If we replace pyodbc with pymssql, the request is returned directly
+- In any case, if we run the same application without uWSGI, the request is returned directly
 
-python 3.6/uwsgi 2.0.17.1/gevent 1.2.1
+
+Versions in use: python 3.6, uWSGI 2.0.17.1, gevent 1.2.1
 
 -------------
 
