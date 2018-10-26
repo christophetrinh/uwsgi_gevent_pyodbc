@@ -1,4 +1,4 @@
-from time import sleep
+from gevent import sleep
 import pyodbc
 import pymssql
 
@@ -25,8 +25,7 @@ def gevent_pyodbc():
 
 
 def gevent_pyodbc_with_sleep():
-    """
-    """
+    # use sleep to delay running of the greenlet
     sleep(0.1)
     try:
         connect_str = 'DRIVER={{ODBC Driver 17 for SQL Server}};' \
